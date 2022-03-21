@@ -12,9 +12,6 @@ app.use(express.json());
 app.use(cors());
 
 const PORT = process.env.PORT;
-const MONGO_URL = process.env.MONGO_URL;
-
-export const client = await createConnection();
 
 app.get("/", function (req, res) {
   res.send(
@@ -23,15 +20,6 @@ app.get("/", function (req, res) {
 });
 
 app.listen(PORT, () => console.log(`Server started ${PORT}`));
-
-//Very important code for mongo connection always just as it is.......
-
-async function createConnection() {
-  const client = new MongoClient(MONGO_URL);
-  await client.connect();
-  console.log("Mongo is connected ✌️😊");
-  return client;
-}
 
 app.get("/createfiles", function (req, res) {
   //variables to get the current date-time stamp
